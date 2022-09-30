@@ -8,7 +8,7 @@ import { Recipe } from './recipe.model';
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [
+  /* private recipes: Recipe[] = [
     new Recipe(
       'Chicken curry',
       'This easy staple chicken curry is a fantastic recipe for family dinners. Its made with just a handful of ingredients and is enriched with creamy yogurt.',
@@ -39,9 +39,16 @@ export class RecipeService {
         new Ingredient('caster sugar to serve (optional)', 1),
       ]
     ),
-  ];
+  ]; */
+
+  private recipes: Recipe[] = [];
 
   constructor(private shoppingListService: ShoppingListService) {}
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
+  }
 
   getRecipes() {
     return this.recipes.slice();
