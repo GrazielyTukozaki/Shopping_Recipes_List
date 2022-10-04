@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiHost: 'https://shopping-list-angular-f520b-default-rtdb.firebaseio.com/',
+  FirebaseKey: 'AIzaSyASKecQTWLgoFZuXuNy_-XC1iK-9HbRZFs',
 };
 
 /*

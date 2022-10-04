@@ -7,7 +7,7 @@ import { AuthService, AuthResponseData } from './auth.service';
 
 @Component({
   selector: 'app-auth',
-  templateUrl: './auth.component.html'
+  templateUrl: './auth.component.html',
 })
 export class AuthComponent {
   isLoginMode = true;
@@ -37,19 +37,23 @@ export class AuthComponent {
       authObs = this.authService.signup(email, password);
     }
 
-    authObs.subscribe(
-      resData => {
+    authObs.subscribe({
+      next: (resData) => {
         console.log(resData);
         this.isLoading = false;
         this.router.navigate(['/recipes']);
       },
-      errorMessage => {
+      error: (errorMessage) => {
         console.log(errorMessage);
         this.error = errorMessage;
         this.isLoading = false;
-      }
-    );
+      },
+    });
 
     form.reset();
+  }
+
+  onHandleError() {
+    this.error = null;
   }
 }

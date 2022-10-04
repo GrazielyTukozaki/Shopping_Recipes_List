@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 import { User } from './user.model';
 
@@ -22,12 +23,12 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  //FirebaseKey = process.env.FirebaseKey;
+  FirebaseKey = environment.FirebaseKey;
 
   signup(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[AIzaSyASKecQTWLgoFZuXuNy_-XC1iK-9HbRZFs]',
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.FirebaseKey}`,
         {
           email: email,
           password: password,
@@ -50,7 +51,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[AIzaSyASKecQTWLgoFZuXuNy_-XC1iK-9HbRZFs]',
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.FirebaseKey}`,
         {
           email: email,
           password: password,

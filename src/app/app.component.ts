@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,5 @@ export class AppComponent implements OnInit {
     this.authSertive.autoLogin;
     this.authSertive.autoLogout;
   }
+  apiHost: string = environment.apiHost;
 }
